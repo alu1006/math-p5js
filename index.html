@@ -7,9 +7,26 @@
 </head>
 <body>
 
-<!-- 流場背景（p5.js 繪製） -->
+<!-- 流場背景（全程固定在最底層） -->
 <div id="bg-canvas"></div>
 
+<!-- Loading 畫面 -->
+<div id="loading">
+  <div id="loading-inner">
+    <div id="loading-title">彈幕拼圖工坊</div>
+    <div id="loading-sub">互動式數學彈道實驗室</div>
+    <div id="loading-formula">
+      <span class="lf">x(t) = v·t</span>
+      <span class="lf">y(t) = A·sin(ωt)</span>
+      <span class="lf">R(θ)·v⃗</span>
+    </div>
+    <button id="loading-enter">點擊進入 →</button>
+    <div id="loading-hint">組合數學公式，設計你的彈幕</div>
+  </div>
+</div>
+
+<!-- 主功能（載入後淡入） -->
+<div id="app">
 <div id="top">
   <div id="canvas-wrap">
     <canvas id="cv"></canvas>
@@ -83,6 +100,7 @@
 </div>
 
 <div id="ghost"></div>
+</div><!-- /#app -->
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.3/p5.min.js"></script>
 <script src="bg.js"></script>

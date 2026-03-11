@@ -990,7 +990,19 @@ document.querySelectorAll('.preset-btn').forEach(btn=>{
   });
 });
 
-// ── 啟動 ──
-resize(); window.addEventListener('resize',resize);
-renderPalette('emitter'); applyAssembly();
-requestAnimationFrame(loop);
+// ── Loading → 主功能切換 ──
+function enterApp(){
+  const loading = document.getElementById('loading');
+  const app     = document.getElementById('app');
+  loading.classList.add('hide');
+  app.classList.add('show');
+  setTimeout(()=>{ loading.style.display='none'; }, 900);
+  // 初始化主功能
+  resize();
+  window.addEventListener('resize', resize);
+  renderPalette('emitter');
+  applyAssembly();
+  requestAnimationFrame(loop);
+}
+
+document.getElementById('loading-enter').addEventListener('click', enterApp);

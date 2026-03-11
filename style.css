@@ -5,12 +5,98 @@ body {
   height:100vh; display:flex; flex-direction:column;
   overflow:hidden; user-select:none;
 }
+#app { flex:1; min-height:0; }
 
 /* ── 流場背景層 ── */
 #bg-canvas {
   position:fixed; inset:0; z-index:0; pointer-events:none;
 }
 #bg-canvas canvas { display:block; width:100%!important; height:100%!important; }
+
+/* ── Loading 畫面 ── */
+#loading {
+  position:fixed; inset:0; z-index:50;
+  display:flex; align-items:center; justify-content:center;
+  transition:opacity .8s ease;
+}
+#loading.hide {
+  opacity:0;
+  pointer-events:none;
+}
+
+#loading-inner {
+  display:flex; flex-direction:column;
+  align-items:center; gap:18px;
+  animation:fadeUp .9s ease both;
+}
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+#loading-title {
+  font-size:36px; font-weight:bold;
+  letter-spacing:6px; color:#1e3a5f;
+  text-shadow:0 2px 20px rgba(100,140,220,0.25);
+}
+
+#loading-sub {
+  font-size:13px; letter-spacing:3px;
+  color:#6b8cbe; margin-top:-10px;
+}
+
+#loading-formula {
+  display:flex; gap:20px; flex-wrap:wrap;
+  justify-content:center;
+  margin:4px 0;
+}
+.lf {
+  font-size:13px; color:#8aaad4;
+  background:rgba(255,255,255,0.55);
+  backdrop-filter:blur(8px);
+  padding:5px 14px; border-radius:20px;
+  border:1px solid rgba(140,170,220,0.3);
+  font-family:'Georgia','Times New Roman',serif;
+  animation:fadeUp .9s ease both;
+}
+.lf:nth-child(1){ animation-delay:.1s; }
+.lf:nth-child(2){ animation-delay:.25s; }
+.lf:nth-child(3){ animation-delay:.4s; }
+
+#loading-enter {
+  margin-top:8px;
+  padding:12px 36px;
+  font-size:14px; letter-spacing:3px;
+  color:#fff;
+  background:linear-gradient(135deg,#4a7fd4,#7b5ea7);
+  border:none; border-radius:30px;
+  cursor:pointer;
+  font-family:'Courier New',monospace;
+  box-shadow:0 4px 20px rgba(100,120,220,0.3);
+  transition:all .2s;
+  animation:fadeUp .9s .5s ease both;
+}
+#loading-enter:hover {
+  transform:scale(1.05);
+  box-shadow:0 6px 28px rgba(100,120,220,0.45);
+}
+#loading-enter:active { transform:scale(0.97); }
+
+#loading-hint {
+  font-size:11px; color:#9ab0cc; letter-spacing:1.5px;
+  animation:fadeUp .9s .65s ease both;
+}
+
+/* ── 主功能區（進入後才顯示） ── */
+#app {
+  display:flex; flex-direction:column;
+  flex:1; min-height:0;
+  opacity:0; pointer-events:none;
+  transition:opacity .8s ease;
+}
+#app.show {
+  opacity:1; pointer-events:all;
+}
 
 /* UI 層浮在背景上 */
 #top, #bottom { position:relative; z-index:1; }
